@@ -70,7 +70,7 @@ Widget _getItemUI(BuildContext context, int index) {
         //trailing: ,
         onTap: () {
          
-          index == _allCoupons.length-1 ? Navigator.of(context).pushNamed("/CustomCard") : _showVouchers(context, _allCoupons[index]);
+          index == _allCoupons.length-1 ? Navigator.of(context).pushNamed("/CustomCard") : Navigator.of(context).pushNamed("/PaymentMethods");
         },
       ),
     ],
@@ -82,11 +82,11 @@ Widget _getItemUI(BuildContext context, int index) {
 }
 }
 
-_showVouchers(BuildContext context, Coupon item) {
-  final SnackBar objSnackbar = new SnackBar(
-    content: new Text("Proceed to pay for ${item.vouchers} Voucher. "),
-    backgroundColor: Colors.amber,
-  );
-  Scaffold.of(context).showSnackBar(objSnackbar);
-}
+// _showVouchers(BuildContext context, Coupon item) {
+//   final SnackBar objSnackbar = new SnackBar(
+//     content: new Text("Proceed to pay for ${item.vouchers} Voucher. "),
+//     backgroundColor: Colors.amber,
+//   );
+//   Scaffold.of(context).showSnackBar(objSnackbar);
+// }
 

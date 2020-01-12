@@ -7,19 +7,19 @@ class Method {
   final String name;
   //-- image
   final String image;
-  //--- vouchers
-  final String vouchers;
+ 
+  
 
 
-  Method({this.name,this.vouchers,this.image}); 
+  Method({this.name, this.image}); 
 }
 
 List<Method> allMethods()
 {
   var payMethods = new List<Method>();
 
-  payMethods.add(new Method(name:"MOMO", vouchers: "GHC 20.00", image: "momo.png"));
-  payMethods.add(new Method(name:"VISA", vouchers: "GHC 40.00", image: "visa.png"));
+  payMethods.add(new Method(name:"MOMO",  image: "momo.png"));
+  payMethods.add(new Method(name:"VISA",  image: "visa.png"));
   return payMethods;
 }
 
