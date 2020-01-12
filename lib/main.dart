@@ -1,9 +1,14 @@
 // import 'package:flutter/material.dart';
+import 'package:giftvoucher/customcard.dart';
+import 'package:giftvoucher/paymentmethods.dart';
+
 import 'register.dart';
 import 'availableshops.dart';
 import 'allshops.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'customcard.dart';
+import 'paymentmethods.dart';
 
 import 'package:flutter_launcher_icons/android.dart';
 import 'package:flutter_launcher_icons/constants.dart';
@@ -76,7 +81,9 @@ class AfterSplash extends StatelessWidget {
       routes: <String, WidgetBuilder> {
                   "/Register": (BuildContext context) => new Register(),
                   "/Availableshops": (BuildContext context) => new Availableshops(),
-                  "/Allshops": (BuildContext context) => new Allshops()
+                  "/Allshops": (BuildContext context) => new Allshops(),
+                  "/CustomCard": (BuildContext context) => new CustomCard(),
+                  "/PaymentMethods": (BuildContext context) => new PaymentMethods()
                 }
 
     );

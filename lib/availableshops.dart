@@ -39,6 +39,8 @@ getHomePageBody(BuildContext context) {
 Widget _getItemUI(BuildContext context, int index) {
 
   return new Card(
+      
+
       child: new Column(
     
     children: <Widget>[
@@ -67,11 +69,13 @@ Widget _getItemUI(BuildContext context, int index) {
             ]),
         //trailing: ,
         onTap: () {
-          // Navigator.of(context).pushNamed("/Allshops");
-          _showVouchers(context, _allCoupons[index]);
+         
+          index == _allCoupons.length-1 ? Navigator.of(context).pushNamed("/CustomCard") : _showVouchers(context, _allCoupons[index]);
         },
-      )
+      ),
     ],
+    
+     
   ));
 
   
