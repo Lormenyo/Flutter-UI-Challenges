@@ -101,7 +101,7 @@ class Register extends StatelessWidget {
                                     side: BorderSide(color: Colors.yellow)),
                                 onPressed: () {
                                   Navigator.of(context)
-                                      .pushNamed("/Allshops");
+                                      .pushNamed("/Dashboard");
                                 },
                                 child: const Text('Submit',
                                     style: TextStyle(

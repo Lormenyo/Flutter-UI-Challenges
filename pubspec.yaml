@@ -73,6 +73,8 @@ flutter:
    - assets/images/thinking.png
    - assets/images/momo.png
    - assets/images/visa.png
+   - assets/images/profile.png
+   - assets/images/pic.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
