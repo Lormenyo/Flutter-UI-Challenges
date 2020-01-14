@@ -178,17 +178,17 @@ void _onItemTapped(int index) {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: IconButton(icon: Icon(Icons.home), onPressed: () {}, focusColor: Colors.amber,),
           title: Text('Home'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.business),
+          icon: IconButton(icon: Icon(Icons.business), onPressed: () {  Navigator.of(context).pushNamed("/Allshops");},),
           title: Text('Buy Card'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.school),
+          icon: IconButton(icon: Icon(Icons.school), onPressed: () {},),
           title: Text('History'),
         ),
       ],
@@ -213,7 +213,11 @@ void _onItemTapped(int index) {
               height: 275.0,
               width: 200.0,
               decoration: BoxDecoration(
-                borderRadius:  BorderRadius.circular(20.0),
+                boxShadow: [new BoxShadow(
+              color: Colors.grey[300],
+              offset: new Offset(7.0, 5.0),
+            )],
+                borderRadius: BorderRadius.circular(20.0),
                 image:  DecorationImage(
                   image: AssetImage(imgPath),
                   fit: BoxFit.cover
