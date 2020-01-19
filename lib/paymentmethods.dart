@@ -1,4 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:square_in_app_payments/in_app_payments.dart';
+import 'package:square_in_app_payments/models.dart';
+
+void _pay(){
+  InAppPayments.setSquareApplicationId("sq0idb-gkx-5YXrYT6njSGbz8Kwdw");
+  InAppPayments.startCardEntryFlow(
+    onCardNonceRequestSuccess: _cardNonceRequestSuccess,
+    onCardEntryCancel: _cardEntryCancel
+  );
+
+}
+
+void _cardEntryCancel(){
+
+}
+
+void _cardNonceRequestSuccess(CardDetails result){
+  print(result);
+  InAppPayments.completeCardEntry(
+    onCardEntryComplete: _cardEntryComplete
+  );
+}
+
+void _cardEntryComplete(){
+
+}
 
 
 class Method {
@@ -7,9 +33,6 @@ class Method {
   final String name;
   //-- image
   final String image;
- 
-  
-
 
   Method({this.name, this.image}); 
 }
@@ -53,7 +76,7 @@ getHomePageBody(BuildContext context) {
 
 
 Widget _getItemUI(BuildContext context, int index) {
-
+  
   return  new Column(
     
     
@@ -62,7 +85,7 @@ Widget _getItemUI(BuildContext context, int index) {
         padding: EdgeInsets.only(top: 100.0),
       ),
         GestureDetector(
-            onTap: () { _showPayment(context, _allMethods[index]); },
+            onTap: () { _allMethods[index].name == "VISA" ? _pay() : _showPayment(context, _allMethods[index]); },
             child: new Container(
           padding: EdgeInsets.all(20.0),
           child: new Image.asset(
@@ -94,6 +117,7 @@ Widget _getItemUI(BuildContext context, int index) {
 }
 
 _showPayment(BuildContext context, Method item) {
+  
   final SnackBar objSnackbar = new SnackBar(
     content: new Text("${item.name} was tapped"),
     backgroundColor: Colors.amber,

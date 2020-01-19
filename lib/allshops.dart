@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'shops.dart';
 
+
 class Allshops extends StatelessWidget {
   final List<Shop> _allShops = allShops();
   Allshops();
