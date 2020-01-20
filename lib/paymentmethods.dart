@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:square_in_app_payments/in_app_payments.dart';
 import 'package:square_in_app_payments/models.dart';
+// import 'package:flutter_rave/flutter_rave.dart';
 
-void _pay(){
-  InAppPayments.setSquareApplicationId("sq0idb-gkx-5YXrYT6njSGbz8Kwdw");
-  InAppPayments.startCardEntryFlow(
+void _pay() async {
+  await InAppPayments.setSquareApplicationId("sandbox-sq0idb-gkx-5YXrYT6njSGbz8Kwdw");
+  await InAppPayments.startCardEntryFlow(
     onCardNonceRequestSuccess: _cardNonceRequestSuccess,
     onCardEntryCancel: _cardEntryCancel
   );
@@ -15,16 +16,78 @@ void _cardEntryCancel(){
 
 }
 
-void _cardNonceRequestSuccess(CardDetails result){
-  print(result);
-  InAppPayments.completeCardEntry(
-    onCardEntryComplete: _cardEntryComplete
-  );
-}
+
+
+/// Callback when successfully get the card nonce details for processing
+///card entry is still open and waiting for processing card nonce details
+void _cardNonceRequestSuccess(CardDetails result) async {
+  // print(result);
+  // InAppPayments.completeCardEntry(
+  //   onCardEntryComplete: _cardEntryComplete
+  // );
+
+      try {
+      // take payment with the card nonce details
+      // you can take a charge
+      // await chargeCard(result);
+      print("Success");
+      print(result);
+      // payment finished successfully
+      // you must call this method to close card entry
+      InAppPayments.completeCardEntry(
+          onCardEntryComplete: _cardEntryComplete);
+    } on Exception catch (ex) {
+      // payment failed to complete due to error
+      // notify card entry to show processing error
+      InAppPayments.showCardNonceProcessingError(ex.toString());
+    }
+  }
+
+
+
 
 void _cardEntryComplete(){
 
 }
+
+//  _payment(BuildContext context) {
+//     final _onFailure = SnackBar(content: Text('Transaction failed'));
+//     final _onClosed = SnackBar(content: Text('Transaction closed'));
+//     final _rave = RaveCardPayment(
+//       isDemo: true,
+//       encKey: "c53e399709de57d42e2e36ca",
+//       publicKey: "FLWPUBK-d97d92534644f21f8c50802f0ff44e02-X",
+//       transactionRef: "hvHPvKYaRuJLlJWSPWGGKUyaAfWeZKnm",
+//       amount: 100,
+//       email: "demo1@example.com",
+//       onSuccess: (response) {
+//         print("$response");
+//         print("Transaction Successful");
+//         if (true) {
+//           Scaffold.of(context).showSnackBar(
+//             SnackBar(
+//               content: Text("Transaction Sucessful!"),
+//               backgroundColor: Colors.green,
+//               duration: Duration(
+//                 seconds: 5,
+//               ),
+//             ),
+//           );
+//         }
+//       },
+//       onFailure: (err) {
+//         print("$err");
+//         print("Transaction failed");
+//         Scaffold.of(context).showSnackBar(_onFailure);
+//       },
+//       onClosed: () {
+//         print("Transaction closed");
+//         Scaffold.of(context).showSnackBar(_onClosed);
+//       },
+//       context: context,
+//     );
+//     _rave.process();
+//   }
 
 
 class Method {

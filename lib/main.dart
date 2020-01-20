@@ -38,9 +38,12 @@ class _MyAppState extends State<MyApp> {
       seconds: 5,
       navigateAfterSeconds: new AfterSplash(),
       title: new Text(
-        '“A wonderful gift may not be wrapped as you expect.”',
+        '“A wonderful gift may not be wrapped \n as you expect.”',
         textAlign: TextAlign.center,
-        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+        style: new TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20.0,
+          fontStyle: FontStyle.italic),
       ),
       image: new Image.asset('assets/images/logo.png',
           alignment: Alignment.center),
@@ -139,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
                             fontSize: 18.0,
                             color: Colors.black)),
                   ),
