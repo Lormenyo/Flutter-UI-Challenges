@@ -2,6 +2,7 @@
 import 'package:giftvoucher/customcard.dart';
 import 'package:giftvoucher/dashboard.dart';
 import 'package:giftvoucher/paymentmethods.dart';
+import 'package:giftvoucher/visa.dart';
 
 import 'register.dart';
 import 'availableshops.dart';
@@ -9,8 +10,7 @@ import 'allshops.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'customcard.dart';
-import 'paymentmethods.dart';
-import 'dashboard.dart';
+
 
 // import 'package:flutter_launcher_icons/android.dart';
 // import 'package:flutter_launcher_icons/constants.dart';
@@ -84,7 +84,8 @@ class AfterSplash extends StatelessWidget {
           "/Allshops": (BuildContext context) => new Allshops(),
           "/CustomCard": (BuildContext context) => new CustomCard(),
           "/PaymentMethods": (BuildContext context) => new PaymentMethods(),
-          "/Dashboard": (BuildContext context) => new Dashboard()
+          "/Dashboard": (BuildContext context) => new Dashboard(),
+          "/Visa": (BuildContext context) => new Visa()
         });
   }
 }
@@ -126,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Padding(
-              padding: const EdgeInsets.only(top: 500.0),
+              padding: const EdgeInsets.only(top: 520.0),
               child: Column(
                 children: <Widget>[
                   Center(
