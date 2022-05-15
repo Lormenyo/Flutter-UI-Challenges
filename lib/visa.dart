@@ -6,7 +6,7 @@ class Visa extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text("Visa"),
+        title: Text("Visa Payment"),
       ),
       body: Center(
         child: Builder(
