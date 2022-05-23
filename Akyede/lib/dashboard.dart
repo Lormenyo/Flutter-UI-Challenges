@@ -181,15 +181,15 @@ void _onItemTapped(int index) {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: IconButton(icon: Icon(Icons.home), onPressed: () {}, focusColor: Colors.amber,),
-          title: Text('Home'),
+          // title: Text('Home'),
         ),
         BottomNavigationBarItem(
           icon: IconButton(icon: Icon(Icons.business), onPressed: () {  Navigator.of(context).pushNamed("/Allshops");},),
-          title: Text('Buy Card'),
+          // title: Text('Buy Card'),
         ),
         BottomNavigationBarItem(
           icon: IconButton(icon: Icon(Icons.school), onPressed: () {},),
-          title: Text('History'),
+          // title: Text('History'),
         ),
       ],
       currentIndex: _selectedIndex,
