@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Stack(
         children: [
           Positioned(
-              top: 10,
+              top: 50,
               left: 0,
               right: 0,
               child: Row(
