@@ -1,3 +1,4 @@
+import 'package:ecg/helpers/constants/asset_constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,8 +23,19 @@ class _HomeScreenState extends State<HomeScreen> {
               left: 0,
               right: 0,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[Text('Hello Hannah'), CircleAvatar()],
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Text('Hello Hannah'),
+                  Image.asset(
+                    kHandWave,
+                    width: 20,
+                    height: 20,
+                  ),
+                  const Spacer(),
+                  const CircleAvatar(
+                    backgroundImage: AssetImage(kHannahProfile),
+                  )
+                ],
               ))
         ],
       ),
