@@ -19,9 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Stack(
         children: [
           Positioned(
-              top: 50,
-              left: 0,
-              right: 0,
+              top: 70,
+              left: 15,
+              right: 15,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
