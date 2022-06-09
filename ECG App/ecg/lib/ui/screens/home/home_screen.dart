@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Spacer(),
                   const CircleAvatar(
                     backgroundImage: AssetImage(kHannahProfile),
+                    radius: 15,
                   )
                 ],
               ))
