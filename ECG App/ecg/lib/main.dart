@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider<AppThemeNotifier>(
+      create: (context) => AppThemeNotifier(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppThemeNotifier>(builder: (contect, appstate, _) {
+    return Consumer<AppThemeNotifier>(builder: (context, appstate, _) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'ECG Power',
