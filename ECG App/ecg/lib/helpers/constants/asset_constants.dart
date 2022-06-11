@@ -6,3 +6,7 @@ const kComment = 'assets/icons/comment.svg';
 const kLightBulb = 'assets/icons/lightbulb-alt.svg';
 const kShield = 'assets/icons/shield.svg';
 const kCopyIcon = 'assets/icons/document-copy.svg';
+const kSettings = 'assets/icons/settings.svg';
+const kProfile = 'assets/icons/profile.svg';
+const kNotifications = 'assets/icons/notification-status.svg';
+const kPresentation = 'assets/icons/presentation-chart.svg';
