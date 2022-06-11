@@ -317,11 +317,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return const TopUpCard();
-                }),
+            child: MediaQuery.removePadding(
+              removeTop: true,
+              context: context,
+              child: ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return const TopUpCard();
+                  }),
+            ),
           )
         ],
       ),
