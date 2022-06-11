@@ -9,19 +9,65 @@ class TopUpCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ListTile(
-          leading: CircleAvatar(
-            backgroundColor: AppColors.ecgYellow100,
-            child: SvgPicture.asset(kLightBulb),
+    return Container(
+      height: 125,
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+          color: AppColors.ecgWhite, borderRadius: BorderRadius.circular(16)),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 10,
+            left: 0,
+            right: 0,
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: AppColors.ecgYellow100,
+                child: SvgPicture.asset(kLightBulb),
+              ),
+              title: Text(
+                'Recharge successful',
+                style: Theme.of(context).textTheme.ecgBody700,
+              ),
+              subtitle: RichText(
+                text: TextSpan(
+                    text:
+                        'Your recharge was successfully processed. Transaction id ',
+                    children: [
+                      TextSpan(
+                          text: 'PRE99037303090271',
+                          style: Theme.of(context)
+                              .textTheme
+                              .ecgBody100
+                              .copyWith(
+                                  color: AppColors.ecgGrey300,
+                                  fontWeight: FontWeight.normal)),
+                      const TextSpan(text: '; Meter number...')
+                    ],
+                    style: Theme.of(context)
+                        .textTheme
+                        .ecgBody100
+                        .copyWith(color: AppColors.ecgGrey100)),
+              ),
+            ),
           ),
-          title: Text(
-            'Recharge successful',
-            style: Theme.of(context).textTheme.ecgBody700,
-          ),
-        ),
-      ],
+          Positioned(
+              bottom: 5,
+              left: 15,
+              right: 15,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('21 Feb'),
+                  CircleAvatar(
+                    backgroundColor: AppColors.ecgBlue200,
+                    child: SvgPicture.asset(kCopyIcon),
+                  )
+                ],
+              ))
+        ],
+      ),
     );
   }
 }

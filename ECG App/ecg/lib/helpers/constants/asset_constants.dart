@@ -5,3 +5,4 @@ const kLightning = 'assets/icons/lightning-alt.png';
 const kComment = 'assets/icons/comment.svg';
 const kLightBulb = 'assets/icons/lightbulb-alt.svg';
 const kShield = 'assets/icons/shield.svg';
+const kCopyIcon = 'assets/icons/document-copy.svg';

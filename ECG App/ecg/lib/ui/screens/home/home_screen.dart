@@ -1,5 +1,6 @@
 import 'package:ecg/config/theme/app_colors.dart';
 import 'package:ecg/helpers/constants/asset_constants.dart';
+import 'package:ecg/ui/widgets/topup_card.dart';
 import 'package:flutter/material.dart';
 import 'package:ecg/config/theme/app_text_theme.dart';
 import 'package:flutter_svg/svg.dart';
@@ -284,37 +285,46 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getRecentTopUp() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Text(
-                'Recent Top Ups',
-                style: Theme.of(context).textTheme.ecgTitle900,
-              ),
-              const Spacer(),
-              Text(
-                'View all',
-                style: Theme.of(context)
-                    .textTheme
-                    .ecgBody100
-                    .copyWith(color: AppColors.ecgGrey100),
-              ),
-              const SizedBox(
-                width: 7,
-              ),
-              const Icon(
-                Icons.arrow_forward_ios,
-                color: AppColors.ecgGrey100,
-                size: 10,
-              )
-            ],
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Text(
+                  'Recent Top Ups',
+                  style: Theme.of(context).textTheme.ecgTitle900,
+                ),
+                const Spacer(),
+                Text(
+                  'View all',
+                  style: Theme.of(context)
+                      .textTheme
+                      .ecgBody100
+                      .copyWith(color: AppColors.ecgGrey100),
+                ),
+                const SizedBox(
+                  width: 7,
+                ),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: AppColors.ecgGrey100,
+                  size: 10,
+                )
+              ],
+            ),
           ),
-        )
-      ],
+          Expanded(
+            child: ListView.builder(
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return const TopUpCard();
+                }),
+          )
+        ],
+      ),
     );
   }
 }
