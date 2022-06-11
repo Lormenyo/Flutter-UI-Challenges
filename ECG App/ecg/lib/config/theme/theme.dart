@@ -10,7 +10,7 @@ class AppTheme {
     final ThemeData lightTheme = ThemeData.light();
     return lightTheme.copyWith(
         disabledColor: Colors.grey[300],
-        scaffoldBackgroundColor: AppColors.ecgWhite,
+        scaffoldBackgroundColor: AppColors.ecgGreyBg,
         appBarTheme: const AppBarTheme(
           elevation: 0,
           color: Colors.transparent,
@@ -19,7 +19,7 @@ class AppTheme {
         primaryIconTheme: const IconThemeData(color: Colors.black),
         // elevatedButtonTheme: ElevatedButtonThemeData(),
         colorScheme: const ColorScheme.light(
-          primary: Color(0xFF122F3A), //Color(0xFFBECD18),
+          primary: Color(0xFF122F3A),
           onPrimary: Colors.white,
           secondary: Color(0xFF8E8E93),
           onBackground: Color(0xFF122F3A),

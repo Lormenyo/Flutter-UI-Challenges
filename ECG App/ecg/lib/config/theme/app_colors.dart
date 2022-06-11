@@ -19,14 +19,20 @@ class AppColors {
 
   static const ecgGrey200 = Color(0xFF7B7E95);
 
+  static const ecgGrey300 = Color(0xFFDDDDDD);
+
   static const ecgPurple = Color(0xFFC85CE3);
 
   static const ecgWhite = Color(0xFFFFFFFF);
 
+  static const ecgWhite40 = Color.fromRGBO(255, 255, 255, 0.4);
+
   static const ecgBlack = Color(0xFF000000);
 
+  static const ecgGreyBg = Color(0xFFE5E5E5);
+
   static const ecgDeepBlueGradient = [
-    Color.fromRGBO(0, 92, 151, 0),
+    Color(0xff005C97),
     Color.fromRGBO(54, 55, 149, 1)
   ];
 

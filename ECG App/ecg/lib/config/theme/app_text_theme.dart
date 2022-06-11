@@ -83,4 +83,20 @@ extension CustomEcgText on TextTheme {
       fontFamily: 'Satoshi',
     );
   }
+
+  TextStyle get ecgBody100 {
+    return const TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.normal,
+      fontFamily: 'Satoshi',
+    );
+  }
+
+  TextStyle get ecgBody700 {
+    return const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.normal,
+      fontFamily: 'Satoshi',
+    );
+  }
 }
