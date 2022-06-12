@@ -216,10 +216,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: [
                       CircleAvatar(
-                          backgroundColor: AppColors.ecgBlue200,
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 0.4),
                           child: SvgPicture.asset(
                             kLightBulb,
-                            color: AppColors.ecgWhite40,
+                            color: AppColors.ecgWhite,
                           )),
                       const SizedBox(
                         width: 10,
@@ -351,9 +352,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
-  }
-
-  Widget getFloatingActionButton() {
-    return FloatingActionButton(onPressed: () {});
   }
 }
