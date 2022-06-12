@@ -27,6 +27,8 @@ class AppColors {
 
   static const ecgWhite = Color(0xFFFFFFFF);
 
+  static const ecgWhite20 = Color.fromRGBO(255, 255, 255, 0.2);
+
   static const ecgWhite40 = Color.fromRGBO(255, 255, 255, 0.4);
 
   static const ecgBlack = Color(0xFF000000);

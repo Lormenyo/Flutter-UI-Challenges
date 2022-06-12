@@ -166,22 +166,32 @@ class _HomeScreenState extends State<HomeScreen> {
           const Spacer(),
           Container(
             height: 40,
-            padding: const EdgeInsets.all(10),
+            width: 126,
+            padding:
+                const EdgeInsets.only(left: 15, right: 0, top: 5, bottom: 5),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
                 color: AppColors.ecgBlue300),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
                   '30.4kWh',
                   style: Theme.of(context)
                       .textTheme
-                      .ecgBody700
+                      .ecgTitle700
                       .copyWith(fontSize: 12, color: AppColors.ecgDarkBlue),
                 ),
+                const Spacer(),
                 CircleAvatar(
-                    backgroundColor: AppColors.ecgWhite,
-                    child: Image.asset(kLightning))
+                    backgroundColor: AppColors.ecgWhite20,
+                    radius: 28,
+                    child: CircleAvatar(
+                        radius: 26,
+                        backgroundColor: AppColors.ecgWhite,
+                        child: Image.asset(
+                          kLightning,
+                        )))
               ],
             ),
           )
@@ -260,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         'Report issue',
-                        style: Theme.of(context).textTheme.ecgBody700,
+                        style: Theme.of(context).textTheme.ecgTitle700,
                       )
                     ],
                   ),
