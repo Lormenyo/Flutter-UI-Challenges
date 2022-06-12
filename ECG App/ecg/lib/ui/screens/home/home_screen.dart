@@ -18,9 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: getFloatingActionButton(),
-      // floatingActionButtonLocation:
-      //     FloatingActionButtonLocation.miniCenterDocked,
       body: getBody(),
       bottomNavigationBar: const ECGBottomNavBar(),
     );
@@ -100,8 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
             boxShadow: const [
               BoxShadow(
                   color: AppColors.ecgBlue200,
-                  blurRadius: 0,
-                  spreadRadius: 3,
+                  blurRadius: 3,
+                  spreadRadius: 5,
                   offset: Offset(6, 10)),
             ],
             borderRadius: BorderRadius.circular(16)),

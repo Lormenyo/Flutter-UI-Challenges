@@ -22,9 +22,16 @@ class TopUpCard extends StatelessWidget {
             left: 0,
             right: 0,
             child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: AppColors.ecgYellow100,
-                child: SvgPicture.asset(kLightBulb),
+              leading: Container(
+                height: 52,
+                width: 52,
+                decoration: BoxDecoration(
+                    color: AppColors.ecgYellow100,
+                    borderRadius: BorderRadius.circular(8)),
+                child: Center(
+                    child: SvgPicture.asset(
+                  kLightBulb,
+                )),
               ),
               title: Text(
                 'Recharge successful',

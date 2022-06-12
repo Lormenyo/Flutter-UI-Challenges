@@ -29,9 +29,20 @@ class ECGBottomNavBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: InkWell(
-              child: const CircleAvatar(
-                backgroundColor: AppColors.ecgBlue700,
-                child: Icon(
+              child: Container(
+                height: 50,
+                width: 50,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.ecgBlue700,
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.ecgBlue200,
+                          spreadRadius: 15,
+                          blurRadius: 7,
+                          offset: Offset(0, 0))
+                    ]),
+                child: const Icon(
                   Icons.add,
                   color: AppColors.ecgWhite,
                 ),
