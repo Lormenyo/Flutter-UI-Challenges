@@ -14,7 +14,15 @@ class TopUpCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: AppColors.ecgWhite, borderRadius: BorderRadius.circular(16)),
+          color: AppColors.ecgWhite,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(
+                offset: Offset(0, 0),
+                color: Color.fromRGBO(127, 131, 156, 0.15),
+                blurRadius: 2,
+                spreadRadius: 2)
+          ]),
       child: Stack(
         children: [
           Positioned(

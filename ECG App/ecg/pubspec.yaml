@@ -78,8 +78,13 @@ flutter:
   # example:
   fonts:
     - family: Satoshi
+      # https://freefontslab.com/satoshi-font-download-free/
       fonts:
-        - asset: assets/fonts/satoshi.ttf
+        - asset: assets/fonts/Satoshi-Light.otf
+        - asset: assets/fonts/Satoshi-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Satoshi-Bold.otf
+          weight: 700
 
   #   - family: Trajan Pro
   #     fonts:
