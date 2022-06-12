@@ -62,7 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Text('Hello Hannah'),
+          Text(
+            'Hello Hannah',
+            style: Theme.of(context).textTheme.ecgBody700,
+          ),
           Image.asset(
             kHandWave,
             width: 20,
