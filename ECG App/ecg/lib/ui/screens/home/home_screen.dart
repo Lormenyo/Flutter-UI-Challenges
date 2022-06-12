@@ -64,7 +64,10 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Text(
             'Hello Hannah',
-            style: Theme.of(context).textTheme.ecgBody700,
+            style: Theme.of(context).textTheme.ecgTitle700,
+          ),
+          const SizedBox(
+            width: 7,
           ),
           Image.asset(
             kHandWave,
@@ -116,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     'What would you like to do today',
                     style: Theme.of(context)
                         .textTheme
-                        .ecgBody700
+                        .ecgTitle700
                         .copyWith(color: AppColors.ecgWhite),
                   ),
                 )),
@@ -158,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Text('Energy usage today',
               style: Theme.of(context)
                   .textTheme
-                  .ecgBody700
+                  .ecgTitle700
                   .copyWith(fontSize: 12, color: AppColors.ecgBlue700)),
           const Spacer(),
           Container(
@@ -255,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 10,
                       ),
                       Text(
-                        'Report',
+                        'Report issue',
                         style: Theme.of(context).textTheme.ecgBody700,
                       )
                     ],
@@ -285,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         title: Text(
           'Tokens',
-          style: Theme.of(context).textTheme.ecgBody700,
+          style: Theme.of(context).textTheme.ecgTitle700,
         ),
         subtitle: Text(
           'Credit didn’t reflect? Find all your tokens.',

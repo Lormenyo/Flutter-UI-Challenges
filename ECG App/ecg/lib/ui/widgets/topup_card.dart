@@ -43,7 +43,7 @@ class TopUpCard extends StatelessWidget {
               ),
               title: Text(
                 'Recharge successful',
-                style: Theme.of(context).textTheme.ecgBody700,
+                style: Theme.of(context).textTheme.ecgTitle500,
               ),
               subtitle: RichText(
                 text: TextSpan(
@@ -52,12 +52,10 @@ class TopUpCard extends StatelessWidget {
                     children: [
                       TextSpan(
                           text: 'PRE99037303090271',
-                          style: Theme.of(context)
-                              .textTheme
-                              .ecgBody100
-                              .copyWith(
-                                  color: AppColors.ecgGrey300,
-                                  fontWeight: FontWeight.normal)),
+                          style:
+                              Theme.of(context).textTheme.ecgTitle700.copyWith(
+                                    color: AppColors.ecgGrey300,
+                                  )),
                       const TextSpan(text: '; Meter number...')
                     ],
                     style: Theme.of(context)
