@@ -13,6 +13,9 @@ class ECGBottomNavBar extends StatelessWidget {
     return Consumer<BottomNavBarNotifier>(
         builder: (context, bottomNavState, _) {
       return BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(kPresentation),

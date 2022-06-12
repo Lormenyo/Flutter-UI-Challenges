@@ -59,7 +59,13 @@ class TopUpCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('21 Feb'),
+                  Text(
+                    '21 Feb',
+                    style: Theme.of(context)
+                        .textTheme
+                        .ecgBody100
+                        .copyWith(color: AppColors.ecgGrey100),
+                  ),
                   CircleAvatar(
                     backgroundColor: AppColors.ecgBlue200,
                     child: SvgPicture.asset(kCopyIcon),
