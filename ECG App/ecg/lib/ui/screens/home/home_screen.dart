@@ -1,5 +1,6 @@
 import 'package:ecg/config/theme/app_colors.dart';
 import 'package:ecg/helpers/constants/asset_constants.dart';
+import 'package:ecg/ui/widgets/badge.dart';
 import 'package:ecg/ui/widgets/bottom_navbar.dart';
 import 'package:ecg/ui/widgets/topup_card.dart';
 import 'package:flutter/material.dart';
@@ -68,9 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 20,
           ),
           const Spacer(),
-          const CircleAvatar(
-            backgroundImage: AssetImage(kHannahProfile),
-            radius: 15,
+          const Badge(
+            badgeColor: AppColors.ecgPurple,
+            child: CircleAvatar(
+              backgroundImage: AssetImage(kHannahProfile),
+              radius: 15,
+            ),
           )
         ],
       ),
