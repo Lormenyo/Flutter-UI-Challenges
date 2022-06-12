@@ -18,6 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton: getFloatingActionButton(),
+      // floatingActionButtonLocation:
+      //     FloatingActionButtonLocation.miniCenterDocked,
       body: getBody(),
       bottomNavigationBar: const ECGBottomNavBar(),
     );
@@ -345,5 +348,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  Widget getFloatingActionButton() {
+    return FloatingActionButton(onPressed: () {});
   }
 }

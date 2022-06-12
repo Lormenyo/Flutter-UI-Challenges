@@ -28,8 +28,17 @@ class ECGBottomNavBar extends StatelessWidget {
             activeIcon: SvgPicture.asset(kNotifications),
           ),
           BottomNavigationBarItem(
-            icon: Container(),
-            label: '',
+            icon: InkWell(
+              child: const CircleAvatar(
+                backgroundColor: AppColors.ecgBlue700,
+                child: Icon(
+                  Icons.add,
+                  color: AppColors.ecgWhite,
+                ),
+              ),
+              onTap: () {},
+            ),
+            label: 'Add',
           ),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(kSettings),
