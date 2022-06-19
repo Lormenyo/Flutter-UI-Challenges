@@ -33,7 +33,7 @@ class AppColors {
 
   static const ecgBlack = Color(0xFF000000);
 
-  static const ecgGreyBg = Color(0xFFE5E5E5);
+  static const ecgGreyBg = Color(0xFFFAFAFA);
 
   static const ecgDeepBlueGradient = [
     Color(0xff005C97),
