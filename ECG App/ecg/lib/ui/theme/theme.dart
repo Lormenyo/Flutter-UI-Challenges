@@ -1,5 +1,5 @@
 import 'package:ecg/config/theme/app_colors.dart';
-import 'package:ecg/config/theme/app_text_theme.dart';
+import 'package:ecg/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {

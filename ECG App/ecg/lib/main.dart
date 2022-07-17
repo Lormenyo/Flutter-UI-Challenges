@@ -1,5 +1,5 @@
-import 'package:ecg/config/theme/app_theme_notifier.dart';
-import 'package:ecg/config/theme/theme.dart';
+import 'package:ecg/ui/theme/app_theme_notifier.dart';
+import 'package:ecg/ui/theme/theme.dart';
 import 'package:ecg/controllers/bottom_navbar_controller.dart';
 import 'package:ecg/ui/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';

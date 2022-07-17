@@ -1,11 +1,11 @@
-import 'package:ecg/config/theme/app_colors.dart';
-import 'package:ecg/config/theme/app_theme_notifier.dart';
+import 'package:ecg/ui/theme/app_colors.dart';
+import 'package:ecg/ui/theme/app_theme_notifier.dart';
 import 'package:ecg/helpers/constants/asset_constants.dart';
 import 'package:ecg/ui/widgets/badge.dart';
 import 'package:ecg/ui/widgets/bottom_navbar.dart';
 import 'package:ecg/ui/widgets/topup_card.dart';
 import 'package:flutter/material.dart';
-import 'package:ecg/config/theme/app_text_theme.dart';
+import 'package:ecg/ui/theme/app_text_theme.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
