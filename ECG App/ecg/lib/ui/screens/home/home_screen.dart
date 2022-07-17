@@ -14,6 +14,8 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+enum Menu { darkMode, logOut }
+
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -75,13 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 20,
           ),
           const Spacer(),
-          const Badge(
-            badgeColor: AppColors.ecgPurple,
-            child: CircleAvatar(
-              backgroundImage: AssetImage(kHannahProfile),
-              radius: 15,
-            ),
-          )
+          getProfileDropdown()
         ],
       ),
     );
@@ -363,4 +359,57 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+// Widget getProfileDropdown() {
+//   return DropdownButton<St>(
+//     value: "dropdownValue",
+//     icon:           const Badge(
+//             badgeColor: AppColors.ecgPurple,
+//             child: CircleAvatar(
+//               backgroundImage: AssetImage(kHannahProfile),
+//               radius: 15,
+//             ),
+
+//           ),
+//     elevation: 16,
+//     style: const TextStyle(color: Colors.deepPurple),
+//     underline: Container(
+//       height: 2,
+//       color: Colors.deepPurpleAccent,
+//     ),
+//     onChanged: (String? newValue) {
+
+//     },
+//     items: [],
+//   );
+// }
+
+Widget getProfileDropdown() {
+  return PopupMenuButton<Menu>(
+      icon: const Badge(
+        badgeColor: AppColors.ecgPurple,
+        child: CircleAvatar(
+          backgroundImage: AssetImage(kHannahProfile),
+          radius: 15,
+        ),
+      ),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(10.0),
+        ),
+      ),
+      // Callback that sets the selected popup menu item.
+      onSelected: (Menu item) {},
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
+            PopupMenuItem<Menu>(
+              value: Menu.darkMode,
+              child: const Text('Dark Mode'),
+              onTap: () {},
+            ),
+            const PopupMenuItem<Menu>(
+              value: Menu.logOut,
+              child: Text('Log Out'),
+            ),
+          ]);
 }
