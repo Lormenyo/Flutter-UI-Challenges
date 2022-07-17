@@ -1,4 +1,5 @@
 import 'package:ecg/config/theme/app_colors.dart';
+import 'package:ecg/config/theme/app_theme_notifier.dart';
 import 'package:ecg/helpers/constants/asset_constants.dart';
 import 'package:ecg/ui/widgets/badge.dart';
 import 'package:ecg/ui/widgets/bottom_navbar.dart';
@@ -6,6 +7,7 @@ import 'package:ecg/ui/widgets/topup_card.dart';
 import 'package:flutter/material.dart';
 import 'package:ecg/config/theme/app_text_theme.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -77,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 20,
           ),
           const Spacer(),
-          getProfileDropdown()
+          getProfileDropdown(context)
         ],
       ),
     );
@@ -385,7 +387,9 @@ class _HomeScreenState extends State<HomeScreen> {
 //   );
 // }
 
-Widget getProfileDropdown() {
+Widget getProfileDropdown(BuildContext context) {
+  var apptheme = Provider.of<AppThemeNotifier>(context);
+
   return PopupMenuButton<Menu>(
       icon: const Badge(
         badgeColor: AppColors.ecgPurple,
@@ -404,12 +408,31 @@ Widget getProfileDropdown() {
       itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
             PopupMenuItem<Menu>(
               value: Menu.darkMode,
-              child: const Text('Dark Mode'),
-              onTap: () {},
+              child: Row(
+                children: [
+                  Icon(
+                      apptheme.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(apptheme.isDarkMode ? 'Light Mode' : 'Dark Mode'),
+                ],
+              ),
+              onTap: () {
+                apptheme.updateTheme(!apptheme.isDarkMode);
+              },
             ),
-            const PopupMenuItem<Menu>(
+            PopupMenuItem<Menu>(
               value: Menu.logOut,
-              child: Text('Log Out'),
+              child: Row(
+                children: const [
+                  Icon(Icons.logout),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text('Log Out')
+                ],
+              ),
             ),
           ]);
 }
