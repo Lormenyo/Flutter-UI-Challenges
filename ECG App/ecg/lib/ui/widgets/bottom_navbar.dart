@@ -1,4 +1,4 @@
-import 'package:ecg/config/theme/app_colors.dart';
+import 'package:ecg/ui/theme/app_colors.dart';
 import 'package:ecg/controllers/bottom_navbar_controller.dart';
 import 'package:ecg/helpers/constants/asset_constants.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:ecg/config/theme/app_colors.dart';
+import 'package:ecg/ui/theme/app_colors.dart';
 import 'package:ecg/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,7 @@ class AppTheme {
     final ThemeData darkTheme = ThemeData.dark();
     return darkTheme.copyWith(
         disabledColor: Colors.grey[300],
-        scaffoldBackgroundColor: AppColors.ecgWhite,
+        scaffoldBackgroundColor: AppColors.ecgDarkBg,
         appBarTheme: const AppBarTheme(
           elevation: 0,
           color: Colors.transparent,

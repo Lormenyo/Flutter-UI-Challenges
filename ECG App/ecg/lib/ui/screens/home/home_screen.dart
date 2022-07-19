@@ -1,5 +1,5 @@
 import 'package:ecg/ui/theme/app_colors.dart';
-import 'package:ecg/ui/theme/app_theme_notifier.dart';
+import 'package:ecg/controllers/app_theme_controller.dart';
 import 'package:ecg/helpers/constants/asset_constants.dart';
 import 'package:ecg/ui/widgets/badge.dart';
 import 'package:ecg/ui/widgets/bottom_navbar.dart';
