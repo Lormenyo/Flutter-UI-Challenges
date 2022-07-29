@@ -1,3 +1,4 @@
+import 'package:ecg/controllers/app_theme_controller.dart';
 import 'package:ecg/ui/theme/app_colors.dart';
 import 'package:ecg/controllers/bottom_navbar_controller.dart';
 import 'package:ecg/helpers/constants/asset_constants.dart';
@@ -10,9 +11,13 @@ class ECGBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appTheme = Provider.of<AppThemeNotifier>(context);
+
     return Consumer<BottomNavBarNotifier>(
         builder: (context, bottomNavState, _) {
       return BottomNavigationBar(
+        backgroundColor:
+            appTheme.isDarkMode ? AppColors.ecgDark300 : AppColors.ecgWhite,
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
@@ -32,15 +37,17 @@ class ECGBottomNavBar extends StatelessWidget {
               child: Container(
                 height: 50,
                 width: 50,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.ecgBlue700,
                     boxShadow: [
                       BoxShadow(
-                          color: AppColors.ecgBlue200,
+                          color: appTheme.isDarkMode
+                              ? AppColors.ecgGrey100
+                              : AppColors.ecgBlue200,
                           spreadRadius: 15,
                           blurRadius: 7,
-                          offset: Offset(0, 0))
+                          offset: const Offset(0, 0))
                     ]),
                 child: const Icon(
                   Icons.add,

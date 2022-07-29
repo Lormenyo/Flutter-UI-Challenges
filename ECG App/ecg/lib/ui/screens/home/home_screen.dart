@@ -280,7 +280,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 71,
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   decoration: BoxDecoration(
-                      color: AppColors.ecgWhite,
+                      color: appTheme.isDarkMode
+                          ? AppColors.ecgGrey100
+                          : AppColors.ecgWhite,
                       borderRadius: BorderRadius.circular(16)),
                   child: Row(
                     children: [
@@ -292,7 +294,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         'Report issue',
-                        style: Theme.of(context).textTheme.ecgTitle700,
+                        style: Theme.of(context).textTheme.ecgTitle700.copyWith(
+                            color: appTheme.isDarkMode
+                                ? AppColors.ecgWhite
+                                : AppColors.ecgBlack),
                       )
                     ],
                   ),
@@ -310,10 +315,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getToken() {
+    var appTheme = Provider.of<AppThemeNotifier>(context);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
-        tileColor: AppColors.ecgWhite,
+        tileColor:
+            appTheme.isDarkMode ? AppColors.ecgGrey100 : AppColors.ecgWhite,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         leading: CircleAvatar(
           backgroundColor: AppColors.ecgBlue200,
@@ -321,14 +329,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         title: Text(
           'Tokens',
-          style: Theme.of(context).textTheme.ecgTitle700,
+          style: Theme.of(context).textTheme.ecgTitle700.copyWith(
+              color: appTheme.isDarkMode
+                  ? AppColors.ecgWhite
+                  : AppColors.ecgBlack),
         ),
         subtitle: Text(
           'Credit didn’t reflect? Find all your tokens.',
-          style: Theme.of(context)
-              .textTheme
-              .ecgBody100
-              .copyWith(color: AppColors.ecgGrey100),
+          style: Theme.of(context).textTheme.ecgBody100.copyWith(
+              color: appTheme.isDarkMode
+                  ? AppColors.ecgWhite40
+                  : AppColors.ecgGrey100),
         ),
         trailing: const Icon(
           Icons.arrow_forward_ios,

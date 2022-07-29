@@ -29,6 +29,10 @@ class AppColors {
 
   static const ecgYellow100 = Color(0XFFFFF8E0);
 
+  static const ecgYellow200 = Color(0XFFFFC720);
+
+  static const ecgBrown100 = Color(0xFF382A00);
+
   static const ecgGrey50 = Color(0xFFDDDDDD);
 
   static const ecgGrey100 = Color(0XFF4F5161);
