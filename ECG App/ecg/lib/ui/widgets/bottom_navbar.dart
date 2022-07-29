@@ -43,7 +43,7 @@ class ECGBottomNavBar extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                           color: appTheme.isDarkMode
-                              ? AppColors.ecgGrey100
+                              ? AppColors.ecgDark300
                               : AppColors.ecgBlue200,
                           spreadRadius: 15,
                           blurRadius: 7,
