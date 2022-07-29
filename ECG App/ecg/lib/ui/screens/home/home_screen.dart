@@ -446,7 +446,13 @@ Widget getProfileDropdown(BuildContext context) {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(apptheme.isDarkMode ? 'Light Mode' : 'Dark Mode'),
+                  Text(
+                    apptheme.isDarkMode ? 'Light Mode' : 'Dark Mode',
+                    style: TextStyle(
+                        color: apptheme.isDarkMode
+                            ? AppColors.ecgWhite
+                            : AppColors.ecgBlack),
+                  ),
                 ],
               ),
               onTap: () {
@@ -456,12 +462,18 @@ Widget getProfileDropdown(BuildContext context) {
             PopupMenuItem<Menu>(
               value: Menu.logOut,
               child: Row(
-                children: const [
-                  Icon(Icons.logout),
-                  SizedBox(
+                children: [
+                  const Icon(Icons.logout),
+                  const SizedBox(
                     width: 10,
                   ),
-                  Text('Log Out')
+                  Text(
+                    'Log Out',
+                    style: TextStyle(
+                        color: apptheme.isDarkMode
+                            ? AppColors.ecgWhite
+                            : AppColors.ecgBlack),
+                  )
                 ],
               ),
             ),
