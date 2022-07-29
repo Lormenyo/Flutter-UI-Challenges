@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
+  static const ecgBlue750 = Color(0xFF3647B3);
+
   static const ecgBlue700 = Color(0xFF303E9F);
+
+  static const ecgBlue50 = Color(0xFFCFD4FA);
 
   static const ecgBlue100 = Color(0XFFEEEFFD);
 
@@ -17,13 +21,21 @@ class AppColors {
 
   static const ecgDark300 = Color(0xFF0D0D0D);
 
+  static const ecgDark300a60 = Color.fromRGBO(13, 13, 13, 0.6);
+
+  static const ecgDark400 = Color(0xFF2F2F2F);
+
+  static const ecgDark500 = Color(0xFF0D112B);
+
   static const ecgYellow100 = Color(0XFFFFF8E0);
+
+  static const ecgGrey50 = Color(0xFFDDDDDD);
 
   static const ecgGrey100 = Color(0XFF4F5161);
 
   static const ecgGrey200 = Color(0xFF7B7E95);
 
-  static const ecgGrey50 = Color(0xFFDDDDDD);
+  static const ecgGrey250 = Color(0xFF7B7E95);
 
   static const ecgGrey300 = Color(0xFF5B5D6D);
 

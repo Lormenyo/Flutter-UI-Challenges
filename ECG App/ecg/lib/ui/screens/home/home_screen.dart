@@ -61,6 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getTopBar() {
+    var appTheme = Provider.of<AppThemeNotifier>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
@@ -68,7 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Text(
             'Hello Hannah',
-            style: Theme.of(context).textTheme.ecgTitle700,
+            style: Theme.of(context).textTheme.ecgTitle700.copyWith(
+                color: appTheme.isDarkMode
+                    ? AppColors.ecgWhite
+                    : AppColors.ecgBlack),
           ),
           const SizedBox(
             width: 7,
@@ -86,6 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getTopCard(BuildContext context) {
+    var appTheme = Provider.of<AppThemeNotifier>(context);
+
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       shadowColor: AppColors.ecgBlue200,
@@ -98,12 +105,14 @@ class _HomeScreenState extends State<HomeScreen> {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
-                  color: AppColors.ecgBlue200,
+                  color: appTheme.isDarkMode
+                      ? AppColors.ecgDark400
+                      : AppColors.ecgBlue200,
                   blurRadius: 3,
                   spreadRadius: 5,
-                  offset: Offset(6, 10)),
+                  offset: const Offset(6, 10)),
             ],
             borderRadius: BorderRadius.circular(16)),
         child: Stack(
@@ -145,22 +154,27 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getEnergyUsage() {
+    var appTheme = Provider.of<AppThemeNotifier>(context);
+
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 5),
       height: 50,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: AppColors.ecgBlue200),
+          color: appTheme.isDarkMode
+              ? AppColors.ecgDark300a60
+              : AppColors.ecgBlue200),
       child: Row(
         children: [
           const SizedBox(
             width: 10,
           ),
           Text('Energy usage today',
-              style: Theme.of(context)
-                  .textTheme
-                  .ecgTitle700
-                  .copyWith(fontSize: 12, color: AppColors.ecgBlue700)),
+              style: Theme.of(context).textTheme.ecgTitle700.copyWith(
+                  fontSize: 12,
+                  color: appTheme.isDarkMode
+                      ? AppColors.ecgBlue750
+                      : AppColors.ecgBlue700)),
           const Spacer(),
           Container(
             height: 40,
@@ -169,16 +183,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 const EdgeInsets.only(left: 15, right: 0, top: 5, bottom: 5),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: AppColors.ecgBlue300),
+                color: appTheme.isDarkMode
+                    ? AppColors.ecgDark500
+                    : AppColors.ecgBlue300),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
                   '30.4kWh',
-                  style: Theme.of(context)
-                      .textTheme
-                      .ecgTitle700
-                      .copyWith(fontSize: 12, color: AppColors.ecgDarkBlue),
+                  style: Theme.of(context).textTheme.ecgTitle700.copyWith(
+                      fontSize: 12,
+                      color: appTheme.isDarkMode
+                          ? AppColors.ecgWhite
+                          : AppColors.ecgDarkBlue),
                 ),
                 const Spacer(),
                 CircleAvatar(
@@ -186,7 +203,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     radius: 28,
                     child: CircleAvatar(
                         radius: 26,
-                        backgroundColor: AppColors.ecgWhite,
+                        backgroundColor: appTheme.isDarkMode
+                            ? AppColors.ecgBlack
+                            : AppColors.ecgWhite,
                         child: Image.asset(
                           kLightning,
                         )))
@@ -199,6 +218,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getActionSection() {
+    var appTheme = Provider.of<AppThemeNotifier>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -206,7 +227,10 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(10.0),
           child: Text(
             'Actions',
-            style: Theme.of(context).textTheme.ecgTitle900,
+            style: Theme.of(context).textTheme.ecgTitle900.copyWith(
+                color: appTheme.isDarkMode
+                    ? AppColors.ecgWhite
+                    : AppColors.ecgBlack),
           ),
         ),
         Padding(
@@ -315,6 +339,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getRecentTopUp() {
+    var appTheme = Provider.of<AppThemeNotifier>(context);
+
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -325,22 +351,27 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   'Recent Top Ups',
-                  style: Theme.of(context).textTheme.ecgTitle900,
+                  style: Theme.of(context).textTheme.ecgTitle900.copyWith(
+                      color: appTheme.isDarkMode
+                          ? AppColors.ecgWhite
+                          : AppColors.ecgBlack),
                 ),
                 const Spacer(),
                 Text(
                   'View all',
-                  style: Theme.of(context)
-                      .textTheme
-                      .ecgBody100
-                      .copyWith(color: AppColors.ecgGrey100),
+                  style: Theme.of(context).textTheme.ecgBody100.copyWith(
+                      color: appTheme.isDarkMode
+                          ? AppColors.ecgGrey250
+                          : AppColors.ecgGrey100),
                 ),
                 const SizedBox(
                   width: 7,
                 ),
-                const Icon(
+                Icon(
                   Icons.arrow_forward_ios,
-                  color: AppColors.ecgGrey100,
+                  color: appTheme.isDarkMode
+                      ? AppColors.ecgGrey250
+                      : AppColors.ecgGrey100,
                   size: 10,
                 )
               ],
