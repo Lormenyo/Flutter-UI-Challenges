@@ -41,6 +41,7 @@ class FindDevicesScreen extends StatelessWidget {
                 builder: (c, snapshot) => Column(
                   children: snapshot.data!
                       .map((d) => ListTile(
+                            leading: Text(d.type.name),
                             title: Text(d.name),
                             subtitle: Text(d.id.toString()),
                             trailing: StreamBuilder<BluetoothDeviceState>(
