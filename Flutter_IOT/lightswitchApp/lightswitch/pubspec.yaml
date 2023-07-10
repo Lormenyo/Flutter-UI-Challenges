@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   flutter_blue_plus: ^1.5.2
   permission_handler: ^10.4.1
+  flutter_bluetooth_serial: ^0.3.2
+  scoped_model: ^2.0.0
 
 dev_dependencies:
   flutter_test:

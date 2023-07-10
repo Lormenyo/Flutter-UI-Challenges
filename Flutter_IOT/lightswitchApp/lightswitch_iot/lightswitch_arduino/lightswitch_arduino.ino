@@ -9,8 +9,6 @@ void setup() {
 void loop() {
 
   if (Serial.available()){
-    char data_received; 
-    data_received = Serial.read();
     temp = Serial.readString().toInt();
   }
    
