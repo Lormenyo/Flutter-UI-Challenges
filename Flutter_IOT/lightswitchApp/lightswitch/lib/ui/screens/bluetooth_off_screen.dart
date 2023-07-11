@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:lightswitch/constants/colors.dart';
+import 'package:lightswitch/ui/screens/find_devices.dart';
 
 class BluetoothOffScreen extends StatefulWidget {
   const BluetoothOffScreen({super.key});
@@ -61,7 +62,15 @@ class _BluetoothOffScreenState extends State<BluetoothOffScreen> {
     }
 
     future().then((_) {
-      setState(() {});
+      // Get current state
+      FlutterBluetoothSerial.instance.state.then((state) {
+        if (state.isEnabled) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const FindDevicesScreen()));
+        }
+      });
     });
   }
 }
