@@ -1,13 +1,19 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:lightswitch/constants/colors.dart';
 
-class BluetoothOffScreen extends StatelessWidget {
-  const BluetoothOffScreen({Key? key, this.state}) : super(key: key);
+class BluetoothOffScreen extends StatefulWidget {
+  const BluetoothOffScreen({super.key});
 
-  final BluetoothState? state;
+  @override
+  State<BluetoothOffScreen> createState() => _BluetoothOffScreenState();
+}
+
+class _BluetoothOffScreenState extends State<BluetoothOffScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class BluetoothOffScreen extends StatelessWidget {
               color: Colors.white54,
             ),
             Text(
-              'Your Bluetooth is ${state != null ? state.toString().substring(15) : 'not available'}.',
+              'Your Bluetooth is OFF ',
               style: Theme.of(context)
                   .primaryTextTheme
                   .bodyMedium
@@ -33,9 +39,7 @@ class BluetoothOffScreen extends StatelessWidget {
               height: 20,
             ),
             ElevatedButton(
-              onPressed: Platform.isAndroid
-                  ? () => FlutterBluePlus.instance.turnOn()
-                  : null,
+              onPressed: onTurnOnPressed,
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(AppColors.brightColor)),
@@ -48,5 +52,16 @@ class BluetoothOffScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onTurnOnPressed() {
+    // Do the request and update with the true value then
+    future() async {
+      await FlutterBluetoothSerial.instance.requestEnable();
+    }
+
+    future().then((_) {
+      setState(() {});
+    });
   }
 }
