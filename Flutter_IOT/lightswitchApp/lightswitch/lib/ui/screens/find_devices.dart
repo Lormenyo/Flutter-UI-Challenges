@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:lightswitch/helpers/size_helper.dart';
 import 'package:lightswitch/ui/widgets/BluetoothDeviceListEntry.dart';
 import 'package:lightswitch/constants/colors.dart';
 
@@ -20,6 +21,7 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
   List<BluetoothDiscoveryResult> results =
       List<BluetoothDiscoveryResult>.empty(growable: true);
   bool isDiscovering = false;
+  List pairedDevices = [];
 
   _FindDevicesScreenState();
 
@@ -36,6 +38,7 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
   void _restartDiscovery() {
     setState(() {
       results.clear();
+      pairedDevices.clear();
       isDiscovering = true;
     });
 
@@ -46,10 +49,16 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
     _streamSubscription =
         FlutterBluetoothSerial.instance.startDiscovery().listen((r) {
       setState(() {
-        final existingIndex = results.indexWhere(
+        final existingIndexInAvailableDevices = results.indexWhere(
             (element) => element.device.address == r.device.address);
-        if (existingIndex >= 0) {
-          results[existingIndex] = r;
+        final existingIndexInPairedDevices = results.indexWhere(
+            (element) => element.device.address == r.device.address);
+        if (existingIndexInAvailableDevices >= 0) {
+          results[existingIndexInAvailableDevices] = r;
+        } else if (existingIndexInPairedDevices >= 0) {
+          pairedDevices[existingIndexInPairedDevices] = r;
+        } else if (r.device.isBonded) {
+          pairedDevices.add(r);
         } else {
           results.add(r);
         }
@@ -63,11 +72,9 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
     });
   }
 
-  // @TODO . One day there should be `_pairDevice` on long tap on something... ;)
-
   @override
   void dispose() {
-    // Avoid memory leak (`setState` after dispose) and cancel discovery
+    // cancel discovery
     _streamSubscription?.cancel();
 
     super.dispose();
@@ -76,98 +83,182 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkColor,
-      appBar: AppBar(
-        elevation: 2,
-        title: isDiscovering
-            ? const Text('Discovering devices')
-            : const Text('Discovered devices'),
-        actions: <Widget>[
-          isDiscovering
-              ? FittedBox(
-                  child: Container(
-                    margin: const EdgeInsets.all(16.0),
-                    child: const CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        backgroundColor: AppColors.darkColor,
+        appBar: AppBar(
+          elevation: 2,
+          title: isDiscovering
+              ? const Text('Discovering devices')
+              : const Text('Discovered devices'),
+          actions: <Widget>[
+            isDiscovering
+                ? FittedBox(
+                    child: Container(
+                      margin: const EdgeInsets.all(16.0),
+                      child: const CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
                     ),
+                  )
+                : IconButton(
+                    icon: const Icon(Icons.replay),
+                    onPressed: _restartDiscovery,
+                  )
+          ],
+        ),
+        body: SizedBox(
+          height: getDisplayHeight(context),
+          width: getDisplayWidth(context),
+          child: SingleChildScrollView(
+            child: SizedBox(
+              width: getDisplayWidth(context),
+              height: getDisplayHeight(context),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text("Paired Devices"),
                   ),
-                )
-              : IconButton(
-                  icon: const Icon(Icons.replay),
-                  onPressed: _restartDiscovery,
-                )
-        ],
+                  getPairedDevices(),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text("Available Devices"),
+                  ),
+                  getAvailableDevices()
+                ],
+              ),
+            ),
+          ),
+        ));
+  }
+
+  getAvailableDevices() {
+    return Expanded(
+      child: SizedBox(
+        width: getDisplayWidth(context),
+        child: Column(
+            children: List.generate(
+          results.length,
+          (index) {
+            BluetoothDiscoveryResult result = results[index];
+            final device = result.device;
+            final address = device.address;
+            if (device.name != null) {
+              return BluetoothDeviceListEntry(
+                device: device,
+                rssi: result.rssi,
+                onTap: () async {
+                  try {
+                    bool bonded = false;
+                    if (device.isBonded) {
+                      // ignore: avoid_print
+                      print('Unbonding from ${device.address}...');
+                      setState(() {
+                        results[results.indexOf(result)] =
+                            BluetoothDiscoveryResult(
+                                device: BluetoothDevice(
+                                  name: device.name ?? '',
+                                  address: "Disconnecting",
+                                  type: device.type,
+                                  bondState: bonded
+                                      ? BluetoothBondState.bonded
+                                      : BluetoothBondState.none,
+                                ),
+                                rssi: result.rssi);
+                      });
+                      await FlutterBluetoothSerial.instance
+                          .removeDeviceBondWithAddress(address);
+                      // ignore: avoid_print
+                      print('Unbonding from ${device.address} has succed');
+                    } else {
+                      // ignore: avoid_print
+                      print('Bonding with ${device.address}...');
+                      setState(() {
+                        results[results.indexOf(result)] =
+                            BluetoothDiscoveryResult(
+                                device: BluetoothDevice(
+                                  name: device.name ?? '',
+                                  address: "Connecting",
+                                  type: device.type,
+                                  bondState: bonded
+                                      ? BluetoothBondState.bonded
+                                      : BluetoothBondState.none,
+                                ),
+                                rssi: result.rssi);
+                      });
+                      bonded = (await FlutterBluetoothSerial.instance
+                          .bondDeviceAtAddress(address))!;
+                      // ignore: avoid_print
+                      print(
+                          'Bonding with ${device.address} has ${bonded ? 'succed' : 'failed'}.');
+                    }
+                    setState(() {
+                      results[results.indexOf(result)] =
+                          BluetoothDiscoveryResult(
+                              device: BluetoothDevice(
+                                name: device.name ?? '',
+                                address: address,
+                                type: device.type,
+                                bondState: bonded
+                                    ? BluetoothBondState.bonded
+                                    : BluetoothBondState.none,
+                              ),
+                              rssi: result.rssi);
+                    });
+                  } catch (ex) {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Error occured while bonding'),
+                          content: Text(ex.toString()),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text("Close"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
+              );
+            } else {
+              return Container();
+            }
+          },
+        )),
       ),
-      body: ListView.builder(
-        itemCount: results.length,
-        itemBuilder: (BuildContext context, index) {
-          BluetoothDiscoveryResult result = results[index];
+    );
+  }
+
+  getPairedDevices() {
+    return SizedBox(
+      width: getDisplayWidth(context),
+      child: Column(
+          children: List.generate(
+        pairedDevices.length,
+        (index) {
+          BluetoothDiscoveryResult result = pairedDevices[index];
           final device = result.device;
-          final address = device.address;
+
           if (device.name != null) {
             return BluetoothDeviceListEntry(
               device: device,
               rssi: result.rssi,
-              onTap: () {
-                Navigator.of(context).pop(result.device);
-              },
-              onLongPress: () async {
-                try {
-                  bool bonded = false;
-                  if (device.isBonded) {
-                    // ignore: avoid_print
-                    print('Unbonding from ${device.address}...');
-                    await FlutterBluetoothSerial.instance
-                        .removeDeviceBondWithAddress(address);
-                    // ignore: avoid_print
-                    print('Unbonding from ${device.address} has succed');
-                  } else {
-                    // ignore: avoid_print
-                    print('Bonding with ${device.address}...');
-                    bonded = (await FlutterBluetoothSerial.instance
-                        .bondDeviceAtAddress(address))!;
-                    // ignore: avoid_print
-                    print(
-                        'Bonding with ${device.address} has ${bonded ? 'succed' : 'failed'}.');
-                  }
-                  setState(() {
-                    results[results.indexOf(result)] = BluetoothDiscoveryResult(
-                        device: BluetoothDevice(
-                          name: device.name ?? '',
-                          address: address,
-                          type: device.type,
-                          bondState: bonded
-                              ? BluetoothBondState.bonded
-                              : BluetoothBondState.none,
-                        ),
-                        rssi: result.rssi);
-                  });
-                } catch (ex) {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Error occured while bonding'),
-                        content: Text(ex.toString()),
-                        actions: <Widget>[
-                          TextButton(
-                            child: const Text("Close"),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                }
-              },
+              onTap: () {},
             );
           } else {
             return Container();
           }
         },
-      ),
+      )),
     );
   }
 }
