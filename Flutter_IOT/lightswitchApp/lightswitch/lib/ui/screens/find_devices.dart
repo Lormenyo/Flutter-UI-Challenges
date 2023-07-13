@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:lightswitch/helpers/size_helper.dart';
+import 'package:lightswitch/ui/screens/device_screen.dart';
 import 'package:lightswitch/ui/widgets/BluetoothDeviceListEntry.dart';
 import 'package:lightswitch/constants/colors.dart';
 
@@ -252,7 +253,10 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
             return BluetoothDeviceListEntry(
               device: device,
               rssi: result.rssi,
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DeviceScreen(device: device)));
+              },
             );
           } else {
             return Container();
