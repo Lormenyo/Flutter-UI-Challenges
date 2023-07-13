@@ -154,60 +154,42 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
                 onTap: () async {
                   try {
                     bool bonded = false;
-                    if (device.isBonded) {
-                      // ignore: avoid_print
-                      print('Unbonding from ${device.address}...');
-                      setState(() {
-                        results[results.indexOf(result)] =
-                            BluetoothDiscoveryResult(
-                                device: BluetoothDevice(
-                                  name: device.name ?? '',
-                                  address: "Disconnecting",
-                                  type: device.type,
-                                  bondState: bonded
-                                      ? BluetoothBondState.bonded
-                                      : BluetoothBondState.none,
-                                ),
-                                rssi: result.rssi);
-                      });
-                      await FlutterBluetoothSerial.instance
-                          .removeDeviceBondWithAddress(address);
-                      // ignore: avoid_print
-                      print('Unbonding from ${device.address} has succed');
-                    } else {
-                      // ignore: avoid_print
-                      print('Bonding with ${device.address}...');
-                      setState(() {
-                        results[results.indexOf(result)] =
-                            BluetoothDiscoveryResult(
-                                device: BluetoothDevice(
-                                  name: device.name ?? '',
-                                  address: "Connecting",
-                                  type: device.type,
-                                  bondState: bonded
-                                      ? BluetoothBondState.bonded
-                                      : BluetoothBondState.none,
-                                ),
-                                rssi: result.rssi);
-                      });
-                      bonded = (await FlutterBluetoothSerial.instance
-                          .bondDeviceAtAddress(address))!;
-                      // ignore: avoid_print
-                      print(
-                          'Bonding with ${device.address} has ${bonded ? 'succed' : 'failed'}.');
-                    }
+
+                    // ignore: avoid_print
+                    print('Bonding with ${device.address}...');
                     setState(() {
                       results[results.indexOf(result)] =
                           BluetoothDiscoveryResult(
                               device: BluetoothDevice(
                                 name: device.name ?? '',
-                                address: address,
+                                address: "Connecting",
                                 type: device.type,
                                 bondState: bonded
                                     ? BluetoothBondState.bonded
                                     : BluetoothBondState.none,
                               ),
                               rssi: result.rssi);
+                    });
+                    bonded = (await FlutterBluetoothSerial.instance
+                        .bondDeviceAtAddress(address))!;
+                    // ignore: avoid_print
+                    print(
+                        'Bonding with ${device.address} has ${bonded ? 'succeeded' : 'failed'}.');
+
+                    setState(() {
+                      // remove from available devices
+                      results.removeAt(results.indexOf(result));
+                      //add to paired devices
+                      pairedDevices.add(BluetoothDiscoveryResult(
+                          device: BluetoothDevice(
+                            name: device.name ?? '',
+                            address: address,
+                            type: device.type,
+                            bondState: bonded
+                                ? BluetoothBondState.bonded
+                                : BluetoothBondState.none,
+                          ),
+                          rssi: result.rssi));
                     });
                   } catch (ex) {
                     showDialog(
