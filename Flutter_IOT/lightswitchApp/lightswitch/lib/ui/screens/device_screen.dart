@@ -17,4 +17,16 @@ class DeviceScreen extends StatelessWidget {
           children: [],
         ));
   }
+
+  unPairDevice() async {
+    if (device.isBonded) {
+      // ignore: avoid_print
+      print('Unbonding from ${device.address}...');
+
+      await FlutterBluetoothSerial.instance
+          .removeDeviceBondWithAddress(device.address);
+      // ignore: avoid_print
+      print('Unbonding from ${device.address} has succed');
+    }
+  }
 }
