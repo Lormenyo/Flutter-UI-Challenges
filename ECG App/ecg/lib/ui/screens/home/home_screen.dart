@@ -1,7 +1,7 @@
 import 'package:ecg/ui/theme/app_colors.dart';
 import 'package:ecg/controllers/app_theme_controller.dart';
 import 'package:ecg/helpers/constants/asset_constants.dart';
-import 'package:ecg/ui/widgets/badge.dart';
+import 'package:ecg/ui/widgets/badge.dart' as badge;
 import 'package:ecg/ui/widgets/bottom_navbar.dart';
 import 'package:ecg/ui/widgets/topup_card.dart';
 import 'package:flutter/material.dart';
@@ -433,7 +433,7 @@ Widget getProfileDropdown(BuildContext context) {
   var apptheme = Provider.of<AppThemeNotifier>(context);
 
   return PopupMenuButton<Menu>(
-      icon: const Badge(
+      icon: const badge.Badge(
         badgeColor: AppColors.ecgPurple,
         child: CircleAvatar(
           backgroundImage: AssetImage(kHannahProfile),
