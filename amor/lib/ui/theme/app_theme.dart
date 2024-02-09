@@ -6,6 +6,7 @@ class AppTheme {
   static ThemeData buildTheme() {
     final ThemeData lightTheme = ThemeData.light();
     return lightTheme.copyWith(
+        useMaterial3: true,
         disabledColor: Colors.grey[300],
         appBarTheme: const AppBarTheme(
           elevation: 0,

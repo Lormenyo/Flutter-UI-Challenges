@@ -1,4 +1,5 @@
 import 'package:amor/ui/screens/home_screen.dart';
+import 'package:amor/ui/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,11 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Amor',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.buildTheme(),
       home: const HomeScreen(),
     );
   }
