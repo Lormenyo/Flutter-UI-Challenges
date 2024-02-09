@@ -1,4 +1,4 @@
-import 'package:amor/ui/screens/home_screen.dart';
+import 'package:amor/ui/screens/onboarding_screen.dart';
 import 'package:amor/ui/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Amor',
       theme: AppTheme.buildTheme(),
-      home: const HomeScreen(),
+      home: const OnboardingScreen(),
     );
   }
 }
