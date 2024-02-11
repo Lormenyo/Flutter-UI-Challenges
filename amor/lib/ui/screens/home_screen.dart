@@ -4,6 +4,7 @@ import 'package:amor/ui/screens/shoot_shot_screen.dart';
 import 'package:amor/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,6 +15,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedPageIndex = 0;
+  String? username = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    getUser();
+  }
+
+  getUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final String? name = prefs.getString('username');
+    setState(() {
+      username = name;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Hannah",
+                  "$username",
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge

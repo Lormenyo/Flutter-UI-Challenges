@@ -3,6 +3,7 @@ import 'package:amor/ui/screens/home_screen.dart';
 import 'package:amor/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -60,6 +61,7 @@ class _SignUpState extends State<SignUp> {
                   onPressed: controller.text == ""
                       ? null
                       : () {
+                          saveUser();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -83,5 +85,11 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  saveUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setString('username', controller.text);
   }
 }
