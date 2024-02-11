@@ -1,6 +1,7 @@
 import 'package:amor/constants/assets_constants.dart';
 import 'package:amor/ui/screens/rizz_screen.dart';
 import 'package:amor/ui/screens/shoot_shot_screen.dart';
+import 'package:amor/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge
-                      ?.copyWith(fontSize: 20),
+                      ?.copyWith(fontSize: 20, color: AppColors.darkBlueColor),
                 ),
                 SvgPicture.asset(
                   kAppLogo,

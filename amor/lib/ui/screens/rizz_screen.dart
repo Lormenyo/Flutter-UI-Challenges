@@ -1,3 +1,4 @@
+import 'package:amor/data/api/rizz_api.dart';
 import 'package:amor/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,8 @@ class RizzScreen extends StatefulWidget {
 }
 
 class _RizzScreenState extends State<RizzScreen> {
+  String currentRizz =
+      "My love for you is like diarrhea, I just can't hold it in.";
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,7 +22,7 @@ class _RizzScreenState extends State<RizzScreen> {
           SizedBox(
               width: 300,
               child: Text(
-                "My love for you is like diarrhea, I just can't hold it in.",
+                currentRizz,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.displaySmall,
               )),
@@ -27,7 +30,9 @@ class _RizzScreenState extends State<RizzScreen> {
             height: 50,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                getRizz();
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -45,5 +50,13 @@ class _RizzScreenState extends State<RizzScreen> {
         ],
       ),
     );
+  }
+
+  Future<void> getRizz() async {
+    String newRizz = await RizzApi.fetchRizz();
+
+    setState(() {
+      currentRizz = newRizz;
+    });
   }
 }
