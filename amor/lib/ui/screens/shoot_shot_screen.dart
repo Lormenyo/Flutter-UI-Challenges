@@ -25,14 +25,20 @@ class _ShootShotScreenState extends State<ShootShotScreen> {
       child: Stack(
         children: [
           Positioned(
-              left: 0, right: 0, top: 10, child: SvgPicture.asset(kValentine)),
+            left: 0, right: 0, top: 10,
+            // child: SvgPicture.asset(kValentine)
+            child: Image.asset(
+              kBlush,
+            ),
+          ),
           Positioned(
             left: 0,
             right: 0,
-            top: 350,
+            top: 400,
             child: Text(
               "Will you be my Valentine?",
-              style: Theme.of(context).textTheme.displayLarge,
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                  color: AppColors.darkBlueColor, fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),
           ),
